@@ -1,3 +1,5 @@
+SWITCH1
+
 service password-encryption
 hostname Switch1
 enable secret 5 $1$mERr$hGSgSlRf3OyKUoQp8u2sQ/
@@ -20,6 +22,7 @@ line vty 10 15
  login
 
 
+SWITCH0
 service password-encryption
 hostname Switch0
 enable secret 5 $1$mERr$WnvPkpWv5hpySYd1.6p7V.
@@ -41,6 +44,8 @@ line vty 5 9
 line vty 10 15
  login
 
+
+ROUTER
 service password-encryption
 hostname Router
 enable secret 5 $1$mERr$Vo6JQrHNjE6N8nRq8RF4P/

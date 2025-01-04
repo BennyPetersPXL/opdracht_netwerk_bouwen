@@ -1,0 +1,75 @@
+service password-encryption
+hostname Switch1
+enable secret 5 $1$mERr$hGSgSlRf3OyKUoQp8u2sQ/
+ip domain-name www.pxl.be
+username admin privilege 1 password 7 08125B471D1A0D46
+interface Vlan1
+ ip address 192.168.1.124 255.255.255.192
+ip default-gateway 192.168.1.65
+banner motd ^CAuthorized Access Only^C
+line con 0
+ password 7 08114D5D1A2E2146
+ login
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 9
+ login local
+ transport input ssh
+line vty 10 15
+ login
+
+
+service password-encryption
+hostname Switch0
+enable secret 5 $1$mERr$WnvPkpWv5hpySYd1.6p7V.
+ip domain-name www.pxl.be
+username admin privilege 1 password 7 08125B471D1A0D47
+interface Vlan1
+ ip address 192.168.1.60 255.255.255.192
+ip default-gateway 192.168.1.1
+banner motd ^CAuthorized Access Only^C
+line con 0
+ password 7 08114D5D1A2E2147
+ login
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 9
+ login local
+ transport input ssh
+line vty 10 15
+ login
+
+service password-encryption
+hostname Router
+enable secret 5 $1$mERr$Vo6JQrHNjE6N8nRq8RF4P/
+ip cef
+ipv6 unicast-routing
+no ipv6 cef
+spanning-tree mode pvst
+interface GigabitEthernet0/0/0
+ ip address 192.168.1.1 255.255.255.192
+ duplex auto
+ speed auto
+ ipv6 address 2001:DB8:1::1/64
+ ipv6 address 2001:DB8:ACAD:1::1/64
+interface GigabitEthernet0/0/1
+ ip address 192.168.1.65 255.255.255.192
+ duplex auto
+ speed auto
+ ipv6 address 2001:DB8:2::1/64
+ ipv6 address 2001:DB8:ACAD:2::1/64
+interface Vlan1
+ no ip address
+ shutdown
+router rip
+ip classless
+ip flow-export version 9
+banner motd ^CAuthorized Access Only^C
+line con 0
+ password 7 08114D5D1A2B55
+ login
+line aux 0
+line vty 0 4
+ login

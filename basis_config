@@ -1,4 +1,4 @@
-SWITCH0
+SWITCH
 
 service password-encryption
 !
@@ -33,42 +33,7 @@ line vty 10 15
 end
 
 
-
-SWITCH1
-
-service password-encryption
-!
-hostname Switch1
-!
-enable secret 5 $1$mERr$hGSgSlRf3OyKUoQp8u2sQ/
-!
-ip domain-name www.pxl.be
-!
-username admin privilege 1 password 7 08125B471D1A0D46
-!
-interface Vlan1
- ip address 192.168.1.124 255.255.255.192
-!
-ip default-gateway 192.168.1.65
-!
-banner motd ^CAuthorized Access Only^C
-!
-line con 0
- password 7 08114D5D1A2E2146
-!
-line vty 0 4
- login local
- transport input ssh
-line vty 5 9
- login local
- transport input ssh
-line vty 10 15
- login
-!
-end
-
-
-ROUTER0
+ROUTER
 
 service password-encryption
 !
